@@ -1,4 +1,6 @@
 <?php
+
+
 Route::get('/', function () {
     return redirect('/places');
 });
@@ -6,6 +8,9 @@ Route::get('/', function () {
 Route::get('/photos/add', 'PlacesController@getAbstactPhotoForm')->middleware('place.checker')->name('places.add-photo');
 Route::get('/place/{id}', 'PlacesController@getPlace')->name('get-place');
 
+Route::resource('images', 'ImagesController')->only([
+     'show', 'destroy'
+]);
 
 Route::group([
     'prefix' => 'places',
@@ -18,3 +23,4 @@ Route::group([
     Route::post('/addPhoto', 'PlacesController@addPhotoToPlace')->name('add-photo-request');
     Route::post('/add', 'PlacesController@createPlace')->name('add-place-request');
 });
+

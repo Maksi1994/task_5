@@ -30,6 +30,18 @@
                     <a href="{{ route('add-estimation', ['image', $image->id, 'dislike']) }}" class="btn btn-primary  active" role="button"
                        aria-pressed="true">Dislike ({{$image->estimates()->where('name', 'dislike')->count()}})</a>
                 </div>
+
+                <div>
+                    <a class="btn btn-primary d-block w-100 mt-4" href="{{route('images.show', $image->id)}}" role="button">Download Photo</a>
+                </div>
+
+                <div>
+                    <form action="{{route('images.destroy', $image)}}" method="post">
+                        @method('DELETE')
+                        @csrf
+                        <button type="submit" class="btn btn-danger w-100 mt-4">Delete Image</button>
+                    </form>
+                </div>
             </div>
         @endforeach
     </div>

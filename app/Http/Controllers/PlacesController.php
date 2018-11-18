@@ -94,4 +94,29 @@ class PlacesController extends Controller
         return redirect()->route('all-places');
     }
 
+    function getPlacesByRating(Request $request)
+    {
+        $places = Place::all()->sortByDesc(function ($place) {
+            return $place->estimates->count();
+        });
+
+        return response()->json($places->map(function ($place) {
+            return [
+                'name' => $place->name,
+                'estimates' => $place->estimates->count()
+            ];
+        }));
+    }
+
+    function getPlaceImages(Request $request) {
+        $images = Image::all()->where('place_id', $request->id);
+
+        return response()->json($images->map(function ($image) {
+            return [
+                'name' => $image->name,
+                'created_id' => $image->created_at
+            ];
+        })->values());
+    }
+
 }

@@ -16,3 +16,6 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/get-all-places', 'PlacesController@getPlacesByRating')->name('api.places.all');
+Route::get('/images/get-place-images/{id}', 'PlacesController@getPlaceImages')->name('api.images.images-by-place');

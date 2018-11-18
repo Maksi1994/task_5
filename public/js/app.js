@@ -9344,7 +9344,7 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 
 	for ( ; i < 4; i += 2 ) {
 
-		// Both box Models exclude margin
+		// Both box models exclude margin
 		if ( box === "margin" ) {
 			delta += jQuery.css( elem, box + cssExpand[ i ], true, styles );
 		}
